@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>赵州地域文化</title> 
     <link rel="stylesheet" href="./css/style01.css" type="text/css"/>
-    <link rel="stylesheet" href="./css/cangzhoumap.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/cangzhou_map.css" type="text/css"/>
+    <script src="./js/echarts.min.js" type="text/javascript"></script>
     <style>
         @font-face {
             font-family: 'zhangcao';
@@ -21,27 +22,32 @@
             align-items: stretch; /* 两侧高度一致 */
         }
         
-        /* 左侧地图容器（占比更大） */
+        /* 左侧图片容器（替换原地图容器，保持原占比和样式） */
         .map-wrapper {
-            flex: 6; /* 地图占比60% */
+            flex: 6; /* 仍占60%宽度 */
             border-radius: 12px;
-            padding: 20px;
+            padding: 0 !important; /* 取消内边距，让图片全屏 */
             border: 1px solid rgba(230, 184, 0, 0.25);
             height: 700px;
             position: relative;
             background: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        #map_1 {
+        /* 左侧全屏图片样式 */
+        .left-full-image {
             width: 100%;
             height: 100%;
-            border-radius: 8px;
-            overflow: hidden;
+            object-fit: cover; /* 保持图片比例，填充容器 */
+            border-radius: 12px; /* 与容器圆角一致 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 增强层次感 */
         }
         
-        /* 右侧介绍容器 */
+        /* 右侧介绍容器（保持原有样式不变） */
         .intro-container {
-            flex: 4; /* 介绍占比40% */
+            flex: 4; /* 占40%宽度 */
             width: 100%;
             border-radius: 12px;
             padding: 30px;
@@ -107,42 +113,6 @@
             font-weight: bold;
         }
         
-        /* 加载动画 */
-        .loading {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(30, 40, 50, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            z-index: 100;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(230, 184, 0, 0.2);
-            border-top: 5px solid #000000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        .loading-text {
-            color: #000000;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
         /* 页脚 */
         footer {
             text-align: center;
@@ -153,7 +123,7 @@
             margin-top: 20px;
         }
         
-        /* 响应式调整 */
+        /* 响应式调整（保持原有逻辑） */
         @media (max-width: 1200px) {
             .content-container {
                 flex-direction: column;
@@ -177,7 +147,7 @@
             pointer-events: none;
         }
         
-        /* 导航样式 */
+        /* 导航样式（保持原有） */
         .nav-box {
             justify-content: flex-start;
             padding-left: 20px;
@@ -210,7 +180,7 @@
             font-weight: bold;
         }
         
-        /* 全局样式 */
+        /* 全局样式（保持原有） */
         body {
             margin: 0;
             padding: 20px;
@@ -244,20 +214,15 @@
             </div>
         </div>
         
-        <!-- 内容区：左侧地图 + 右侧介绍 -->
+        <!-- 内容区：左侧图片 + 右侧文字介绍 -->
         <div class="content-container">
-            <!-- 左侧：石家庄地图（赵州标黄） -->
+            <!-- 左侧：替换地图为赵州特色图片（核心修改） -->
             <div class="map-wrapper">
-                <div id="map_1"></div>
-                <div class="loading" id="loading">
-                    <div>
-                        <div class="spinner"></div>
-                        <div class="loading-text">正在加载石家庄地图数据...</div>
-                    </div>
-                </div>
+                <!-- 替换为你的高清赵州图片路径（推荐：赵州桥全景、梨花海、柏林禅寺等） -->
+                <img src="./images/map.jpg" alt="赵州地域风光" class="left-full-image">
             </div>
             
-            <!-- 右侧：赵州详细介绍 -->
+            <!-- 右侧：保留原有文字介绍（无修改） -->
             <div class="intro-container">
                 <div class="intro-header">
                     <div class="intro-title">赵州（赵县）文化详解</div>
@@ -289,13 +254,7 @@
             <p>© 2023 赵州地域文化地图 | 数据来源:阿里云DataV、赵县人民政府</p>
         </footer>
     </div>
-
-    <!-- 脚本文件 -->
-    <script src="./js/script3.js" type="text/javascript"></script>
-    <script src="./js/echartsmin.js" type="text/javascript"></script>
+    <!-- 移除原地图脚本（无需加载地图） -->
+    <!-- <script src="./js/script3.js" type="text/javascript"></script> -->
 </body>
-
 </html>
-
-
-
